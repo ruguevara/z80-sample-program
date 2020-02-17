@@ -26,7 +26,12 @@ screen_top: defb    0   ; WPMEM
 ; Include modules
 ;===========================================================================
     include "utilities.asm"
+
+    ; org this include in fast memory
+    org #8000
     include "fill.asm"
+
+    org #7000   ; org the main code back to slow memory
     include "clearscreen.asm"
 
     ; Normally you would assemble the unit tests in a separate target
@@ -103,8 +108,7 @@ stack_top:
 
 
 ; Fill up to 65535
-    defs 0x10000 - $
+    ; defs 0x10000 - $
 
 
     SAVESNA "z80-sample-program.sna", main
-    

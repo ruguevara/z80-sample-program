@@ -8,6 +8,7 @@
             "type": "dezog",
             "request": "launch",
             "name": "Sample-Program",
+            "preLaunchTask": "sjasmplus",
             "zhostname": "localhost",
             "zport": 10000,
             "listFiles": [
@@ -66,6 +67,5 @@
             "smallValuesMaximum": 513,
             "tmpDir": ".tmp"
         },
-
     ]
 }

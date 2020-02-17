@@ -1,5 +1,10 @@
 {
     "version": "2.0.0",
+    "options": {
+        "env": {
+            "ZEsarUX_path": "/Applications/zesarux.app/Contents/MacOS/zesarux_cmd.sh",
+        }
+    },    
     "tasks": [
         {
             "label": "sjasmplus",
@@ -27,6 +32,33 @@
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            "label": "run ZEsarUX debug host",
+            "group": "none",
+            "type": "shell",
+            "command": "${ZEsarUX_path}",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false
+            },
+            "args": [
+                "--enable-remoteprotocol",
+                "--remoteprotocol-port 10000",
+                "--machine 128k",
+                "--zoom 2",
+                "--quickexit",
+                "--show-display-debug",
+                "--show-electron-debug",
+                "--show-invalid-opcode",
+                "--fastautoload",
+                "--sna-no-change-machine",
+                "--realvideo",
+                "--nosplash",
+                "--nowelcomemessage"
+            ],
+            "problemMatcher": []
+        },
     ]
 }

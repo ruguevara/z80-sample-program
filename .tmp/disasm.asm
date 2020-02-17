@@ -1,102 +1,100 @@
 ; EQU:
 ; Data addresses used by the opcodes that point to uninitialized memory areas.
-L6001:       equ  6001h	; 24577. Subroutine. Called by: L6062[6080h].
-L6018:       equ  6018h	; 24600. Subroutine. Called by: L6062[6079h].
-L602B:       equ  602Bh	; 24619. Subroutine. Called by: L6062[6084h].
-L6040:       equ  6040h	; 24640. Data accessed by: 606Fh(in L6062), 6075h(in L6062)
-L6048:       equ  6048h	; 24648. Subroutine. Called by: L6062[6066h].
-L6053:       equ  6053h	; 24659. Subroutine. Called by: L6062[6069h].
+L6001:       equ  6001h	; 24577. Subroutine. Called by: L62E2[6300h].
+L6010:       equ  6010h	; 24592. Subroutine. Called by: L62E2[62E6h].
+L601B:       equ  601Bh	; 24603. Subroutine. Called by: L62E2[62E9h].
+; Last element of stack:
+L63D1:       equ  63D1h
+L8008:       equ  8008h	; 32776. Subroutine. Called by: L62E2[62F9h].
+L801B:       equ  801Bh	; 32795. Subroutine. Called by: L62E2[6304h].
+L8030:       equ  8030h	; 32816. Data accessed by: 62EFh(in L62E2), 62F5h(in L62E2)
 
 
-             org 6062h ; 6062h
+             org 62E2h ; 62E2h
 
 
 ; Label not accessed.
-6062 L6062:
-6062 F3           DI          
-6063 31 9D 60     LD   SP,L609B+2 	; 609Dh, top of stack
-6066 CD 48 60     CALL L6048  	; 6048h
-6069 CD 53 60     CALL L6053  	; 6053h
-606C 21 42 60     LD   HL,6042h 	; 24642
-606F 22 40 60     LD   (L6040),HL 	; 6040h
-6072 11 00 58     LD   DE,5800h 	; 22528
-6075 L6075:
-6075 2A 40 60     LD   HL,(L6040) 	; 6040h
-6078 7E           LD   A,(HL) 
-6079 CD 18 60     CALL L6018  	; 6018h
-607C D5           PUSH DE     
-607D 11 88 13     LD   DE,1388h 	; 5000
-6080 CD 01 60     CALL L6001  	; 6001h
-6083 D1           POP  DE     
-6084 CD 2B 60     CALL L602B  	; 602Bh
-6087 18 EC        JR   L6075  	; 6075h
+62E2 L62E2:
+62E2 F3           DI          
+62E3 31 D3 63     LD   SP,L63D1+2 	; 63D3h, top of stack
+62E6 CD 10 60     CALL L6010  	; 6010h
+62E9 CD 1B 60     CALL L601B  	; 601Bh
+62EC 21 32 80     LD   HL,8032h 	; 32818, -32718
+62EF 22 30 80     LD   (L8030),HL 	; 8030h
+62F2 11 00 58     LD   DE,5800h 	; 22528
+62F5 L62F5:
+62F5 2A 30 80     LD   HL,(L8030) 	; 8030h
+62F8 7E           LD   A,(HL) 
+62F9 CD 08 80     CALL L8008  	; 8008h
+62FC D5           PUSH DE     
+62FD 11 88 13     LD   DE,1388h 	; 5000
+6300 CD 01 60     CALL L6001  	; 6001h
+6303 D1           POP  DE     
+6304 CD 1B 80     CALL L801B  	; 801Bh
+6307 18 EC        JR   L62F5  	; 62F5h
 
 
-6089 00           defb 00h    	; 0
-608A 00           defb 00h    	; 0
-608B 00           defb 00h    	; 0
-608C 00           defb 00h    	; 0
-608D 00           defb 00h    	; 0
-608E 00           defb 00h    	; 0
-608F 00           defb 00h    	; 0
-6090 00           defb 00h    	; 0
-6091 00           defb 00h    	; 0
-6092 00           defb 00h    	; 0
-6093 00           defb 00h    	; 0
-6094 00           defb 00h    	; 0
-6095 00           defb 00h    	; 0
-6096 00           defb 00h    	; 0
-6097 00           defb 00h    	; 0
-6098 00           defb 00h    	; 0
-6099 00           defb 00h    	; 0
-609A 00           defb 00h    	; 0
-
-
-; Last element of stack:
-609B L609B:
-609B 00           defb 00h    	; 0
-609C 00           defb 00h    	; 0
-609D 00           defb 00h    	; 0
-609E 00           defb 00h    	; 0
-609F 00           defb 00h    	; 0
-60A0 00           defb 00h    	; 0
-60A1 00           defb 00h    	; 0
-60A2 00           defb 00h    	; 0
-60A3 00           defb 00h    	; 0
-60A4 00           defb 00h    	; 0
-60A5 00           defb 00h    	; 0
-60A6 00           defb 00h    	; 0
-60A7 00           defb 00h    	; 0
-60A8 00           defb 00h    	; 0
-60A9 00           defb 00h    	; 0
-60AA 00           defb 00h    	; 0
-60AB 00           defb 00h    	; 0
-60AC 00           defb 00h    	; 0
-60AD 00           defb 00h    	; 0
-60AE 00           defb 00h    	; 0
-60AF 00           defb 00h    	; 0
-60B0 00           defb 00h    	; 0
-60B1 00           defb 00h    	; 0
-60B2 00           defb 00h    	; 0
-60B3 00           defb 00h    	; 0
-60B4 00           defb 00h    	; 0
-60B5 00           defb 00h    	; 0
-60B6 00           defb 00h    	; 0
-60B7 00           defb 00h    	; 0
-60B8 00           defb 00h    	; 0
-60B9 00           defb 00h    	; 0
-60BA 00           defb 00h    	; 0
-60BB 00           defb 00h    	; 0
-60BC 00           defb 00h    	; 0
-60BD 00           defb 00h    	; 0
-60BE 00           defb 00h    	; 0
-60BF 00           defb 00h    	; 0
-60C0 00           defb 00h    	; 0
-60C1 00           defb 00h    	; 0
-60C2 00           defb 00h    	; 0
-60C3 00           defb 00h    	; 0
-60C4 00           defb 00h    	; 0
-60C5 00           defb 00h    	; 0
+6309 00           defb 00h    	; 0
+630A 00           defb 00h    	; 0
+630B 00           defb 00h    	; 0
+630C 00           defb 00h    	; 0
+630D 00           defb 00h    	; 0
+630E 00           defb 00h    	; 0
+630F 00           defb 00h    	; 0
+6310 00           defb 00h    	; 0
+6311 00           defb 00h    	; 0
+6312 00           defb 00h    	; 0
+6313 00           defb 00h    	; 0
+6314 00           defb 00h    	; 0
+6315 00           defb 00h    	; 0
+6316 00           defb 00h    	; 0
+6317 00           defb 00h    	; 0
+6318 00           defb 00h    	; 0
+6319 00           defb 00h    	; 0
+631A 00           defb 00h    	; 0
+631B 00           defb 00h    	; 0
+631C 00           defb 00h    	; 0
+631D 00           defb 00h    	; 0
+631E 00           defb 00h    	; 0
+631F 00           defb 00h    	; 0
+6320 00           defb 00h    	; 0
+6321 00           defb 00h    	; 0
+6322 00           defb 00h    	; 0
+6323 00           defb 00h    	; 0
+6324 00           defb 00h    	; 0
+6325 00           defb 00h    	; 0
+6326 00           defb 00h    	; 0
+6327 00           defb 00h    	; 0
+6328 00           defb 00h    	; 0
+6329 00           defb 00h    	; 0
+632A 00           defb 00h    	; 0
+632B 00           defb 00h    	; 0
+632C 00           defb 00h    	; 0
+632D 00           defb 00h    	; 0
+632E 00           defb 00h    	; 0
+632F 00           defb 00h    	; 0
+6330 00           defb 00h    	; 0
+6331 00           defb 00h    	; 0
+6332 00           defb 00h    	; 0
+6333 00           defb 00h    	; 0
+6334 00           defb 00h    	; 0
+6335 00           defb 00h    	; 0
+6336 00           defb 00h    	; 0
+6337 00           defb 00h    	; 0
+6338 00           defb 00h    	; 0
+6339 00           defb 00h    	; 0
+633A 00           defb 00h    	; 0
+633B 00           defb 00h    	; 0
+633C 00           defb 00h    	; 0
+633D 00           defb 00h    	; 0
+633E 00           defb 00h    	; 0
+633F 00           defb 00h    	; 0
+6340 00           defb 00h    	; 0
+6341 00           defb 00h    	; 0
+6342 00           defb 00h    	; 0
+6343 00           defb 00h    	; 0
+6344 00           defb 00h    	; 0
+6345 00           defb 00h    	; 0
 ; ...
 ; ...
 ; ...
